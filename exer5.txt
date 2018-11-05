@@ -1,0 +1,52 @@
+Exploring Fibonacci:
+
+fib 33 = 3524578
+fib 45 = 1134903170
+
+Why do you think the fib function you have defined takes so long to do seemingly simple calculations?
+Answer:
+
+My Fibonacci function is a recursive function which is F(n) = F(n-1) + F(n-2).
+Each function call will get two function calls whhich is n-1 for the biggest one.
+Therefore, the complexity is O(2^n) which is NP-Complete. It takes time.
+
+
+Something Else:
+
+Describe the values in the things list. 
+Answer:
+
+*Main> take 20 fibs
+[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
+*Main> take 20 things
+[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181]
+The function of things output a list of Fibonacci sequence which is same as the fibs function above.
+
+
+
+
+Describe how the values in things are calculated, using what you know about lazy evaluation.
+Answer:
+Things use lazy evaluation to calculate the result that is a way to use a infinitive list in calculation.
+The value in the list will be calculated only in the situation required.
+No unnecessary calculation will be performed. Then it saves time.
+The function things only store the way to calculate the Fibonacci sequence.
+If only the first ten values of the Fibonacci sequence is required, only the first 10 values will be calculated.
+Then if the calculation begins, we will have 0, 1 at the beginning of the list. 
+By using zipWith (+) things (tail things), we combine lists by letting the lists sum after moving 1 location like below.
+  0 1 ...
+0 1 ...
+To get the third value of the list, we use the second value of the list and first number of list which is the second column to sum.
+Then we get 1.
+  0 1 1 ...
+0 1 1 ...
+If the result index is n, the indices of list to sum will be always n-1 and n-2 because two values are originally there for (n-2) and it become (n-1) after tailing.
+Therefore, it is a Fibonacci sequence.
+
+
+Evaluate things!!33 and things!!45. Why is this calculation so much faster than calculating the values in the list fibs?
+Answer:
+things !! 33 = 3524578
+things !! 45 = 1134903170
+It is fast because when calculating a new value the function will use the values already calculated in the previous recursions then sum together.
+Therefore, the complexity is O(n). It is fast.
